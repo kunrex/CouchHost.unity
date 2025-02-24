@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+
 using System.Threading;
 
 using UnityEngine;
@@ -51,6 +52,13 @@ namespace Hosting.Unity
             }
         }
 
+        public void InvalidConnectionCall()
+        {
+            actions.Enqueue(OnInvalidConnection);
+        }
+            
+        protected virtual void OnInvalidConnection() { }
+        
         public void StartManaging()
         {
             actions.Enqueue(OnServerStart);

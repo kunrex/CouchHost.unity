@@ -8,11 +8,13 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
+using UnityEngine;
+
 using Hosting.Enums;
 using Hosting.Unity;
 using Hosting.Services;
 using Hosting.Interfaces;
-using UnityEngine;
+
 using Task = System.Threading.Tasks.Task;
 
 namespace Hosting 
@@ -129,19 +131,19 @@ namespace Hosting
             {
                 Logger.Instance.LogWarning($"Received new connection from: [{hash}] while not on STANDBY.");
                 await WaitCloseInvalidSocket(client);
+                
+                UnityClientManager.Instance.InvalidConnectionCall();
                 return;
             }
-            
-            Logger.Instance.Log("hello");
             
             if (UnityClientManager.Instance.ReachedLimit)
             {
                 Logger.Instance.LogWarning($"Received new connection from: [{hash}] while on connection limit.");
                 await WaitCloseExtraSocket(client);
+                
+                UnityClientManager.Instance.InvalidConnectionCall();
                 return;
             }
-            
-            Logger.Instance.Log("hello");
             
             await ManageNewSocket(hash, client);
         }
