@@ -50,12 +50,12 @@ public sealed class ClientManager : UnityClientManager
 
     protected override void OnClientConnect(UnityClientObject client)
     {
-        Debug.Log($"Runtime started for Room: {RoomCode}, no new connections will be accepted");
+        
     }
 
     protected override void OnClientDisconnect(UnityClientObject client)
     {
-        Debug.Log($"Runtime started for Room: {RoomCode}, no new connections will be accepted");
+        
     }
 
     protected override UnityClientObject InstantiateClientObject(string hash)
