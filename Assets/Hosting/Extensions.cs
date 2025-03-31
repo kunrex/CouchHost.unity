@@ -106,7 +106,7 @@ namespace Hosting
                 payloadLength = (int)BitConverter.ToUInt64(buffer.Reverse().ToArray(), 0);
             }
 
-            byte[] maskingKey = new byte[4];
+            var maskingKey = new byte[4];
             if (isMasked)
             {
                 stream.Read(maskingKey, 0, 4); 
@@ -163,11 +163,6 @@ namespace Hosting
             short directionButtons = BitConverter.ToInt16(data, offset + 22);
 
             return new ControllerData(joyStickAx, joyStickAy, joyStickBx, joyStickBy, letterButtons, directionButtons);
-        }
-
-        public static void CreateJsonResponse(int code, string message, out string response)
-        {
-            response = JsonUtility.ToJson(new { code, message });
         }
     }
 }

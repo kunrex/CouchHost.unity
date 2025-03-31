@@ -156,7 +156,6 @@ namespace Hosting
             {
                 try
                 {
-                    Logger.Instance.Log("hello");
                     var unityClient = UnityClientManager.instance.PushClientConnection(hash);
                 
                     if (unityClient == null)
